@@ -5,46 +5,107 @@
     <title>Website Under Construction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            background: #f8f9fa;
-            color: #333;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #222;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .crazy-scroll {
+            width: 100vw;
+            min-height: 300vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: flex-start;
+            padding-bottom: 5rem;
         }
-        .container {
+        .crazy-header {
+            margin-top: 3rem;
             text-align: center;
-            padding: 2rem;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: #fff;
+            padding: 2rem 1rem;
+            border-radius: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            width: 80vw;
+            max-width: 600px;
+            animation: crazy-bounce 1.5s infinite alternate;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #e67e22;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #555;
-        }
-        .icon {
+        .crazy-emoji {
             font-size: 3rem;
+            display: block;
             margin-bottom: 1rem;
-            color: #e67e22;
+        }
+        .crazy-section {
+            margin: 4rem 0;
+            padding: 3rem 2rem;
+            width: 70vw;
+            max-width: 500px;
+            border-radius: 2rem;
+            background: repeating-linear-gradient(135deg, #fff, #fff 20px, #fcb69f 40px, #ffecd2 60px);
+            box-shadow: 0 4px 24px rgba(255,106,0,0.15);
+            text-align: center;
+            font-size: 1.5rem;
+            color: #222;
+            transform: rotate(-2deg);
+            transition: transform 0.2s;
+        }
+        .crazy-section:hover {
+            transform: scale(1.05) rotate(2deg);
+            background: repeating-linear-gradient(135deg, #ee0979, #ff6a00 20px, #fff 40px, #fcb69f 60px);
+            color: #fff;
+        }
+        .crazy-section:nth-child(even) {
+            background: repeating-linear-gradient(135deg, #fcb69f, #ffecd2 20px, #fff 40px, #ee0979 60px);
+            transform: rotate(2deg);
+        }
+        @keyframes crazy-bounce {
+            0% { transform: scale(1) rotate(-2deg); }
+            100% { transform: scale(1.05) rotate(2deg); }
+        }
+        @media (max-width: 600px) {
+            .crazy-header, .crazy-section {
+                width: 95vw;
+                padding: 1.5rem 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🚧</div>
-        <h1>Under Construction</h1>
-        <p>My website is currently under construction.<br>
-        Please check back soon!</p>
+    <div class="crazy-scroll">
+        <div class="crazy-header">
+            <span class="crazy-emoji">�</span>
+            <h1>Welcome to the Crazy Scroll!</h1>
+            <p>Scroll down for a wild ride 🚨</p>
+        </div>
+        <div class="crazy-section">
+            <h2>Section 1</h2>
+            <p>🎉 This is just the beginning. Keep scrolling!</p>
+        </div>
+        <div class="crazy-section">
+            <h2>Section 2</h2>
+            <p>😎 Things are getting interesting. Scroll more!</p>
+        </div>
+        <div class="crazy-section">
+            <h2>Section 3</h2>
+            <p>🔥 The colors! The chaos! The scroll never ends!</p>
+        </div>
+        <div class="crazy-section">
+            <h2>Section 4</h2>
+            <p>🌀 Are you dizzy yet? Keep going!</p>
+        </div>
+        <div class="crazy-section">
+            <h2>Section 5</h2>
+            <p>🎆 You made it! Or did you? Scroll up and down for more fun!</p>
+        </div>
     </div>
 </body>
 </html>
