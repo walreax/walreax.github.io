@@ -1,247 +1,80 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Akshat Jha</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>akshatjha.in — Maintenance</title>
     <style>
-      :root {
-        --color-bg-light: #f5f5f7;
-        --color-bg-dark: #181824;
-        --color-text-light: #181824;
-        --color-text-dark: #f5f5f7;
-        --color-accent: #4f8cff;
-        --color-card-light: #fff;
-        --color-card-dark: #232336;
-        --color-nav-bg-light: #fff;
-        --color-nav-bg-dark: #232336;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: var(--color-bg-light);
-        color: var(--color-text-light);
-        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-        min-height: 100vh;
-        margin: 0;
-        transition: background 0.3s, color 0.3s;
-      }
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: var(--color-bg-dark);
-          color: var(--color-text-dark);
-        }
-        .nav, .card {
-          background: var(--color-nav-bg-dark);
-          color: var(--color-text-dark);
-        }
-      }
-      .nav {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        background: var(--color-nav-bg-light);
-        padding: 1.5rem 0 1rem 0;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        border-radius: 0 0 1.5rem 1.5rem;
-        margin-bottom: 2rem;
-        transition: background 0.3s, color 0.3s;
-      }
-      .nav a {
-        color: var(--color-accent);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        letter-spacing: 0.03em;
-        padding: 0.2em 0.7em;
-        border-radius: 0.5em;
-        transition: background 0.2s, color 0.2s;
-      }
-      .nav a.active, .nav a:hover {
-        background: var(--color-accent);
-        color: #fff;
-      }
-      .container {
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 0 1.5rem 2rem 1.5rem;
-      }
-      .profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 2.5rem;
-      }
-      .profile-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--color-accent);
-        margin-bottom: 1.2rem;
-        background: #eee;
-      }
-      h1 {
-        font-size: 2.2rem;
-        margin: 0.2em 0 0.1em 0;
-      }
-      h2 {
-        font-size: 1.5rem;
-        margin: 1.5em 0 0.5em 0;
-      }
-      .card {
-        background: var(--color-card-light);
-        border-radius: 1.2rem;
-        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-        padding: 2rem 1.5rem;
-        margin-bottom: 2rem;
-        transition: background 0.3s, color 0.3s;
-      }
-      .projects-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .project-item {
-        background: #f5f5f7;
-        border-radius: 0.8rem;
-        padding: 1rem 1.2rem;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-        transition: background 0.3s;
-      }
-      @media (prefers-color-scheme: dark) {
-        .project-item {
-          background: #232336;
-        }
-      }
-      .project-title {
-        font-weight: 600;
-        font-size: 1.1rem;
-        margin-bottom: 0.2em;
-      }
-      .project-desc {
-        font-size: 1rem;
-        color: #666;
-      }
-      .page {
-        display: none;
-      }
-      .page.active {
-        display: block;
-      }
-      @media (max-width: 600px) {
-        .container {
-          padding: 0 0.2rem 2rem 0.2rem;
-        }
-        .nav {
-          gap: 1rem;
-          font-size: 0.95rem;
-        }
-        .card {
-          padding: 1.2rem 0.7rem;
-        }
-      }
+      :root{--bg:#071126;--card:#071a2a;--accent:#6db8ff;--muted:#98a0b3;--text:#e6eef8}
+      @media (prefers-color-scheme: light){:root{--bg:#f7fbff;--card:#ffffff;--accent:#2b6cff;--muted:#6b7280;--text:#07122a}}
+      html,body{height:100%;margin:0}
+      body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--bg) 0%, #071a2a 60%);color:var(--text);-webkit-font-smoothing:antialiased}
+      .maintenance{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+      .card{max-width:980px;width:100%;border-radius:14px;padding:28px;background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));box-shadow:0 18px 60px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+      @media (prefers-color-scheme: light){.card{box-shadow:0 8px 32px rgba(16,24,40,0.06);border:1px solid rgba(16,24,40,0.04)}}
+      .grid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:center}
+      @media (max-width:880px){.grid{grid-template-columns:1fr;padding:0}}
+      h1{margin:0;font-size:28px}
+      p.lead{margin-top:10px;color:var(--muted)}
+      .pills{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+      .pill{background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:999px;color:var(--accent);font-weight:700;font-size:13px;border:1px solid rgba(255,255,255,0.03)}
+      .right{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+      .status{color:var(--accent);font-weight:800}
+      .muted{color:var(--muted)}
+      .cta{display:inline-block;margin-top:18px;background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:800;text-decoration:none}
+      .small{font-size:13px;color:var(--muted);margin-top:10px}
+      .blobs{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+      .blob{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(60px);opacity:0.45}
+      .b1{background:radial-gradient(circle at 30% 30%, #6db8ff,#3b82f6);left:-120px;top:-120px}
+      .b2{background:radial-gradient(circle at 70% 70%, #ff8fb4,#ff6a88);right:-160px;bottom:-160px}
+      /* preserve site hidden */
+      #site-root{display:none}
+      /* small utilities for preserved site */
+      .nav{display:flex;gap:18px;justify-content:center;padding:18px 0}
+      .nav-link{color:var(--accent);text-decoration:none;font-weight:700}
+      .container{max-width:760px;margin:20px auto;padding:0 18px}
+      .card-inner{background:var(--card);padding:18px;border-radius:12px}
+      .page{display:none}
+      .page.active{display:block}
+      .projects-list{display:flex;flex-direction:column;gap:12px}
+      .project-item{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+      @media (max-width:600px){.grid{grid-template-columns:1fr}.card{padding:18px}}
     </style>
-</head>
-<body>
-    <nav class="nav">
-      <a href="#home" class="nav-link active" onclick="showPage('home')">Home</a>
-      <a href="#about" class="nav-link" onclick="showPage('about')">About</a>
-      <a href="#projects" class="nav-link" onclick="showPage('projects')">Projects</a>
-      <a href="#contact" class="nav-link" onclick="showPage('contact')">Contact</a>
-    </nav>
-    
-    <main class="container">
-      <section id="home" class="page active">
-        <div class="profile card">
-          <img class="profile-img" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" />
-          <h1>Alex Johnson</h1>
-          <p style="font-size:1.1rem;margin-top:8px;">Frontend Developer & UI Enthusiast</p>
-          <p style="margin-top:12px; color:#4f8cff;">Welcome to my portfolio website!</p>
-        </div>
-      </section>
-      
-      <section id="about" class="page">
-        <div class="card">
-          <h2>About Me</h2>
-          <p>
-            Hi! I'm Alex Johnson, a passionate frontend developer with a love for building beautiful and interactive web experiences. I enjoy working with React, CSS, and modern web technologies. When I'm not coding, you can find me exploring new design trends or hiking in the mountains.
-          </p>
-        </div>
-      </section>
-      
-      <section id="projects" class="page">
-        <div class="card">
-          <h2>Projects</h2>
-          <div class="projects-list">
-            <div class="project-item">
-              <div class="project-title">Portfolio Website</div>
-              <div class="project-desc">A personal portfolio to showcase my projects and skills, built with HTML, CSS and JavaScript.</div>
+  </head>
+  <body>
+    <div class="blobs" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+    </div>
+
+    <main class="maintenance" role="main">
+      <div class="card" role="status">
+        <div class="grid">
+          <div>
+            <h1>Site temporarily offline for maintenance</h1>
+            <p class="lead">We're performing scheduled updates and improvements. The site will be back shortly. Thank you for your patience.</p>
+            <div class="pills">
+              <div class="pill">Maintenance</div>
+              <div class="pill">Performance</div>
+              <div class="pill">Content Updates</div>
             </div>
-            <div class="project-item">
-              <div class="project-title">Weather App</div>
-              <div class="project-desc">A simple weather app using OpenWeatherMap API and vanilla JavaScript.</div>
-            </div>
-            <div class="project-item">
-              <div class="project-title">Task Manager</div>
-              <div class="project-desc">A productivity tool to manage daily tasks, built with HTML, CSS and localStorage.</div>
-            </div>
+            <p class="small">If it's urgent, contact: <a href="mailto:akshat@akshatjha.in">akshat@akshatjha.in</a></p>
+            <a class="cta" href="mailto:akshat@akshatjha.in">Contact owner</a>
           </div>
+          <aside class="right">
+            <div class="right-panel card-inner">
+              <div class="status">Status: Maintenance</div>
+              <div class="muted">Estimated time:</div>
+              <div style="font-weight:800;margin-top:6px">About 30 minutes</div>
+              <div class="small">Contact: <a href="mailto:akshat@akshatjha.in">akshat@akshatjha.in</a></div>
+              <div class="small muted" style="margin-top:10px">To preview the full site, click "Preview site" or append <code>?preview=true</code> to the URL.</div>
+            </div>
+          </aside>
         </div>
-      </section>
-      
-      <section id="contact" class="page">
-        <div class="card">
-          <h2>Contact</h2>
-          <p>Email: <a href="mailto:alex.johnson@email.com">alex.johnson@email.com</a></p>
-          <p>LinkedIn: <a href="https://linkedin.com/in/alexjohnson" target="_blank">alexjohnson</a></p>
-          <p>GitHub: <a href="https://github.com/alexjohnson" target="_blank">alexjohnson</a></p>
-        </div>
-      </section>
+      </div>
     </main>
-    
-    <script>
-      function showPage(pageName) {
-        // Hide all pages
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(page => page.classList.remove('active'));
-        
-        // Remove active class from all nav links
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => link.classList.remove('active'));
-        
-        // Show selected page
-        document.getElementById(pageName).classList.add('active');
-        
-        // Add active class to clicked nav link
-        event.target.classList.add('active');
-        
-        // Update URL hash
-        window.location.hash = pageName;
-      }
-      
-      // Handle browser back/forward buttons
-      window.addEventListener('hashchange', function() {
-        const hash = window.location.hash.replace('#', '');
-        if (hash && document.getElementById(hash)) {
-          showPage(hash);
-        }
-      });
-      
-      // Initialize page based on URL hash
-      window.addEventListener('load', function() {
-        const hash = window.location.hash.replace('#', '');
-        if (hash && document.getElementById(hash)) {
-          showPage(hash);
-        }
-      });
-    </script>
-</body>
+
+  <!-- original site removed as requested -->
+  </body>
 </html>
