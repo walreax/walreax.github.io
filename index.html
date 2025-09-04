@@ -61,6 +61,15 @@
             </div>
             <p class="small">If it's urgent, contact: <a href="mailto:akshat@akshatjha.in">akshat@akshatjha.in</a></p>
             <a class="cta" href="mailto:akshat@akshatjha.in">Contact owner</a>
+            <div class="form-section" style="margin-top:20px">
+              <h3 style="margin:0 0 10px 0;font-size:18px">Send a message</h3>
+              <form action="/api/contact" method="POST">
+                <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:8px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text)">
+                <input type="email" name="email" placeholder="Your email" required style="width:100%;padding:8px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text)">
+                <textarea name="message" placeholder="Your message" required style="width:100%;padding:8px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;background:rgba(255,255,255,0.02);color:var(--text);min-height:80px"></textarea>
+                <button type="submit" style="background:var(--accent);color:#fff;padding:8px 12px;border:none;border-radius:6px;font-weight:700;cursor:pointer">Send message</button>
+              </form>
+            </div>
           </div>
           <aside class="right">
             <div class="right-panel card-inner">
