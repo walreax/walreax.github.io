@@ -1,13 +1,6 @@
-# Environment variables
-.env
-
-# Dependencies
 node_modules/
-
-# Vercel
+.env
 .vercel/
-
-# OS generated files
 .DS_Store
-Thumbs.db
-.vercel
+npm-debug.log
+yarn-error.log
