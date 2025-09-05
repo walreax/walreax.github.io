@@ -9,19 +9,19 @@
        Palette & Typography
        ========================== */
     :root{
-      --indigo:#2e2a66;         /* Royal indigo */
-      --amethyst:#7b4bb7;       /* Amethyst purple */
-      --vermilion:#e5483b;      /* Vermilion red */
-      --turmeric:#f4b400;       /* Turmeric gold */
-      --emerald:#1ba784;        /* Emerald green */
-      --moon:#dfe6f7;           /* Moonlight silver */
-      --ivory:#f7f3ea;          /* Warm ivory */
-      --opal:#f2d7ff;           /* Opalescent pink */
-      --ink:#0f1020;            /* Deep ink */
-      --bg-grad: radial-gradient(1200px 800px at 10% -10%, rgba(244,180,0,.25), transparent 60%),
-                 radial-gradient(1000px 1000px at 110% 10%, rgba(123,75,183,.28), transparent 55%),
-                 radial-gradient(900px 900px at 50% 120%, rgba(229,72,59,.22), transparent 60%),
-                 linear-gradient(180deg, #0f1020 0%, #1a1636 60%, #0f1020 100%);
+  --indigo:#2e2a66;
+  --amethyst:#7b4bb7;
+  --vermilion:#e5483b;
+  --turmeric:#f4b400;
+  --emerald:#1ba784;
+  --moon:#f6f8ff;
+  --ivory:#f7f3ea;
+  --opal:#f2d7ff;
+  --ink:#0f1020;
+  --bg-grad: radial-gradient(1200px 800px at 10% -10%, rgba(244,180,0,.22), transparent 60%),
+         radial-gradient(1000px 1000px at 110% 10%, rgba(123,75,183,.22), transparent 55%),
+         radial-gradient(900px 900px at 50% 120%, rgba(229,72,59,.18), transparent 60%),
+         linear-gradient(180deg, #0f1020 0%, #1a1636 60%, #0f1020 100%);
     }
     html,body{height:100%;}
     body{
@@ -36,7 +36,13 @@
        ========================== */
     .hero{ position:relative; padding: clamp(72px, 12vw, 140px) 0 96px; text-align:center;}
     .hero-title{ font-size:clamp(36px, 6vw, 70px); font-weight:800; background:linear-gradient(90deg, var(--moon), #fff, var(--opal));
-      -webkit-background-clip:text; background-clip:text; color:transparent; filter: drop-shadow(0 2px 18px rgba(255,255,255,.12));}
+      -webkit-background-clip:text; background-clip:text; color:transparent; filter: drop-shadow(0 2px 18px rgba(255,255,255,.12));
+      animation: heroGlow 6s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow {
+      0% { text-shadow: 0 0 16px #f4b40044, 0 0 32px #7b4bb744; }
+      100% { text-shadow: 0 0 32px #f4b40099, 0 0 48px #7b4bb799; }
+    }
     .hero-sub{ font-size:clamp(16px, 2.2vw, 22px); color:#ece7ff; opacity:.9; max-width:900px; margin:.8rem auto 0;}
     .crest{ position:absolute; inset:auto 0 -160px 0; height:320px; pointer-events:none; }
 
@@ -67,6 +73,19 @@
     .panel{ position:relative; padding:90px 0; }
     .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:min(6vw, 56px); align-items:center; }
     .card{ background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:22px; padding:28px; box-shadow: 0 10px 40px rgba(0,0,0,.25); backdrop-filter: blur(8px);}
+    .card{
+      background: rgba(255,255,255,.06);
+      border:1.5px solid rgba(255,255,255,.13);
+      border-radius:22px;
+      padding:28px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      transition: box-shadow 0.2s, border 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 16px 48px 0 rgba(123,75,183,0.18), 0 2px 24px 0 rgba(244,180,0,0.10);
+      border:1.5px solid var(--amethyst);
+    }
     .kintsugi{ position:relative; aspect-ratio:1/1; border-radius:22px; overflow:hidden; background: radial-gradient(120% 120% at 20% 10%, rgba(27,167,132,.25), transparent 60%),
                  radial-gradient(100% 100% at 90% 90%, rgba(229,72,59,.18), transparent 65%),
                  linear-gradient(145deg, #17142e, #241f46);
@@ -86,14 +105,52 @@
        ========================== */
     .motifs{ display:grid; grid-template-columns: repeat(3, 1fr); gap:min(4vw, 28px); margin-top:36px; }
     .motif{ padding:22px; border-radius:20px; background: rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08);}
-    .motif h3{ font-size:20px; color:var(--moon); }
-    .motif p{ color:#e7e0ff; opacity:.85; }
+    .motif{
+      padding:22px;
+      border-radius:20px;
+      background: rgba(255,255,255,.045);
+      border:1.5px solid rgba(255,255,255,.10);
+      transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .motif:hover {
+      background: rgba(244,180,0,.08);
+      border:1.5px solid var(--turmeric);
+      box-shadow: 0 4px 24px 0 rgba(244,180,0,0.10);
+    }
+    .motif h3{ font-size:20px; color:var(--moon); letter-spacing:1px; }
+    .motif p{ color:#e7e0ff; opacity:.92; }
 
     /* ==========================
        Footer / Tagline
        ========================== */
     footer{ padding:80px 0 120px; text-align:center; color:#f3eefc; opacity:.95; }
-    .tag{ font-size:clamp(18px, 2.2vw, 22px); color:#fcefd6; }
+    footer{
+      padding:72px 0 100px;
+      text-align:center;
+      color:#f3eefc;
+      opacity:.97;
+      background: linear-gradient(0deg, #1a1636 0%, transparent 100%);
+      border-top: 1.5px solid rgba(255,255,255,0.08);
+      margin-top: 48px;
+    }
+    .tag{
+      font-size:clamp(18px, 2.2vw, 22px);
+      color:#fcefd6;
+      letter-spacing:1.2px;
+      text-shadow: 0 2px 12px #f4b40033;
+    }
+    @media (max-width: 900px) {
+      .container { width: 98vw; }
+      .grid { grid-template-columns: 1fr; gap: 32px; }
+      .mandala-wrap { width: 98vw; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 18px 2vw; }
+      .panel, .bloom { padding: 48px 0; }
+      .hero { padding: 48px 0 64px; }
+      .motifs { grid-template-columns: 1fr; gap: 18px; }
+    }
 
     /* ==========================
        Utilities
