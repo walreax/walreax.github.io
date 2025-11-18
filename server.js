@@ -14,6 +14,10 @@ app.get('/anwesha/theme', (req, res) => {
   res.sendFile(path.join(__dirname, 'anwesha', 'theme', 'index.html'));
 });
 
+app.get('/sevautsav', (req, res) => {
+    res.sendFile(path.join(__dirname, 'sevautsav', 'index.html'));
+})
+
 // Optionally serve static files
 app.use(express.static(__dirname));
 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artist Selection Poll</title>
+  <style>
+    :root{
+      --bg:#0f1223; --panel:#1a1f36; --text:#e9eefc; --muted:#aab2d5; --accent:#6ae3ff; --accent2:#7b4bb7;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; background: radial-gradient(900px 600px at -10% -10%, rgba(106,227,255,.07), transparent 50%), radial-gradient(900px 600px at 110% 10%, rgba(123,75,183,.08), transparent 55%), linear-gradient(180deg, #0f1223, #121631 55%, #0f1223 100%); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; min-height:100vh;}
+    header{padding:28px 20px; text-align:center}
+    h1{margin:0; font-size:clamp(24px,4vw,36px); letter-spacing:.5px}
+    .wrap{max-width:920px; margin:0 auto; padding:16px 20px 64px}
+    .panel{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+    .grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:18px; margin-top:12px}
+    .card{background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:16px; display:flex; gap:14px; align-items:center; transition:transform .15s, box-shadow .15s, border .15s}
+    .card:hover{transform: translateY(-3px); box-shadow:0 12px 36px rgba(106,227,255,.12); border-color: rgba(106,227,255,.5)}
+    .avatar{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,#6ae3ff,#7b4bb7); display:grid; place-items:center; font-weight:700; color:#0b0f1f}
+    .meta{flex:1}
+    .name{font-weight:700}
+    .muted{color:var(--muted); font-size:14px}
+    .voteBtn{background:linear-gradient(90deg, #6ae3ff, #7b4bb7); color:#0b0f1f; border:none; border-radius:10px; padding:10px 12px; font-weight:700; cursor:pointer}
+    .notice{margin:12px 0 0; color:var(--muted); font-size:14px}
+    .success{color:#5bffb2}
+    .error{color:#ff6a6a}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Artist Selection Poll</h1>
+    <div class="muted">Vote once for your favorite artist. Your vote helps prioritize outreach.</div>
+  </header>
+  <main class="wrap">
+    <section class="panel">
+      <div id="status" class="notice">Loading artists…</div>
+      <div class="grid" id="artists"></div>
+    </section>
+  </main>
+  <script>
+    const ARTISTS=[
+      { id:'ujjivan', name:'Ujjivan Small Finance', info:'Corporate set • Modern fusion', initial:'U' },
+      { id:'indusind', name:'IndusInd Collab', info:'Corporate mix • Acoustic', initial:'I' },
+      { id:'mankind', name:'Mankind', info:'Pop rock • Energetic', initial:'M' },
+      { id:'mpl', name:'MPL', info:'Electro-pop • High tempo', initial:'P' },
+      { id:'lg', name:'LG Showcase', info:'Ambient set • Minimal', initial:'L' },
+      { id:'dt', name:'Delhi Tourism', info:'Folk-electronic • Cultural', initial:'D' },
+      { id:'ndfc', name:'NDFC Live', info:'Indie • Alt rock', initial:'N' },
+    ];
+
+    const $ = (s)=>document.querySelector(s);
+    const statusEl = $('#status');
+    const listEl = $('#artists');
+
+    function cardTemplate(artist){
+      return `<div class="card">
+        <div class="avatar">${artist.initial}</div>
+        <div class="meta"><div class="name">${artist.name}</div><div class="muted">${artist.info}</div></div>
+        <button class="voteBtn" data-id="${artist.id}">Vote</button>
+      </div>`
+    }
+
+    async function getCSRF(){
+      const r = await fetch('/api/artist-selection/csrf', { credentials:'include' });
+      if(!r.ok) throw new Error('csrf');
+      const { token } = await r.json();
+      return token;
+    }
+
+    async function vote(artistId){
+      const token = await getCSRF();
+      const r = await fetch('/api/artist-selection/vote', { method:'POST', headers:{'Content-Type':'application/json','x-csrf-token':token}, credentials:'include', body: JSON.stringify({ artistId }) });
+      const data = await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(data.message||'Failed');
+      return data;
+    }
+
+    function render(){
+      listEl.innerHTML = ARTISTS.map(cardTemplate).join('');
+      listEl.addEventListener('click', async (e)=>{
+        const btn = e.target.closest('.voteBtn');
+        if(!btn) return;
+        const id = btn.dataset.id;
+        btn.disabled = true; btn.textContent='Voting…';
+        try {
+          const res = await vote(id);
+          statusEl.className='notice success';
+          statusEl.textContent = 'Vote recorded. Thank you!';
+        } catch(err){
+          statusEl.className='notice error';
+          statusEl.textContent = err.message.includes('duplicate') ? 'You have already voted.' : 'Could not record vote.';
+        } finally {
+          btn.disabled=false; btn.textContent='Vote';
+        }
+      });
+      statusEl.textContent = 'Select an artist and cast your vote.';
+    }
+
+    render();
+  </script>
+</body>
+</html>
