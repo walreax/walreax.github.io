@@ -7,9 +7,10 @@ function tryRead(p){ try{ return fs.existsSync(p) ? fs.readFileSync(p,'utf8') : 
 
 module.exports = async (req, res) => {
   // Require admin key
-  const ADMIN_KEY = process.env.ADMIN_KEY;
+  const ADMIN_KEY = process.env.ADMIN_KEY || process.env.X_ADMIN_KEY || process.env.x_admin_key;
   const key = req.headers['x-admin-key'];
-  if(!ADMIN_KEY || key !== ADMIN_KEY){ return send(res, 401, 'Unauthorized'); }
+  if(!ADMIN_KEY){ return send(res, 500, 'Admin key not configured. Set ADMIN_KEY (or X_ADMIN_KEY / x_admin_key) in environment.'); }
+  if(key !== ADMIN_KEY){ return send(res, 401, 'Unauthorized'); }
 
   // Determine writable dir used by other functions
   const writableDir = process.env.WRITABLE_DIR || (process.env.VERCEL ? '/tmp' : null);
